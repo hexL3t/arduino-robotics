@@ -1,6 +1,6 @@
 <h1>Welcome, Junior Engineers!</h1>
 
-<p>This repository is your one-stop shop for all the Arduino code you'll learn in the Aerorobotics program. Each .ino file here corresponds to a specific presentation in the program, providing a clear connection between the concepts you're exploring and the code you'll write.</p>
+<p>This repository holds the files for all the Arduino code you'll learn in the Junior Engineers SumoBots program. Each .ino file here corresponds to a specific presentation taught in the program in the program, providing a clear connection between the concepts you're exploring and the code you'll write.</p>
 
 <h2>Getting Started</h2>
 
