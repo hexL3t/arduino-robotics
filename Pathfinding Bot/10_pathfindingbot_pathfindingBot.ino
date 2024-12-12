@@ -8,7 +8,8 @@ Servo myServo;                      // Create a servo object to control the serv
 
 // Declare variables
 int distance;                        // Variable to store the measured distance
-
+int leftDistance = 0;
+int rightDistance = 0;
 int count = 0;                       // Servo angle counter
 int direction = 1;                   // Direction for servo sweep (1 = forward, -1 = backward)
 
@@ -38,7 +39,71 @@ void setup() {
 void loop() {
   delay(300);                       // 0.3s Delay for stability
   readUltrasonicSensor();           
-  socialDistancingBot(distance);        
+  pathfindingBot(distance);        
+}
+
+// Robot navigation function
+void pathfindingBot(int distance) {
+  lcd.clear();                  // Clear the LCD screen
+  count += 10 * direction;      // Adjust the servo angle based on the current direction
+
+  // Ensure the servo angle stays within the valid range (0 to 180 degrees)
+  if (count >= 0 && count <= 180) {
+    myServo.write(count);       // Move the servo to the current angle
+
+    // Display a message on the LCD indicating the bot is checking the distance
+    lcd.setCursor(0, 0);
+    lcd.print("Checking...");
+    lcd.clear();                  // Clear the LCD screen
+
+    // Check the distance and take appropriate action:
+    if (distance > 20) {
+      // If the path is clear, move the bot forward
+      lcd.setCursor(0,0);
+      lcd.print("Going Forward");
+      forward(100);
+    } 
+    else {
+      // If an obstacle is detected, stop the bot
+      lcd.setCursor(0, 0);
+      lcd.print("STOP");
+      stopMotors();
+
+      // Scan the surroundings using the ultrasonic sensor
+      myServo.write(0); // Check left
+      delay(2000);
+      leftDistance = readUltrasonicSensor();
+
+      myServo.write(180); // Check right
+      delay(2000);
+      rightDistance = readUltrasonicSensor();
+
+      myServo.write(90); // Reset servo to center
+      delay(500);
+
+      // Determine the best direction to turn
+      if (leftDistance > rightDistance) {
+        // Turn left
+        lcd.setCursor(0, 0);
+        lcd.print("Turning Left");
+        spinLeft(100);
+        delay(500);
+      } 
+      else {
+        // Turn right
+        lcd.setCursor(0, 0);
+        lcd.print("Turning Right");
+        spinRight(100);
+        delay(500);
+      }
+    }
+    // Delay to allow the sensor and servo to stabilize
+    delay(300);
+  }
+    // Reverse the servo direction if it reaches the end of its range
+  if (count >= 180 || count <= 0) {
+    direction *= -1;
+  }
 }
 
 // Function to handle motion based on distance

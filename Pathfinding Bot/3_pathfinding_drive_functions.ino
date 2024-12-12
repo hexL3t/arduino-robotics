@@ -1,3 +1,6 @@
+#include <Wire.h>                    // Include Wire library for I2C communication
+#include <LiquidCrystal_I2C.h>      // Include library for LCD display
+
 void setup() {
   pinMode(13, OUTPUT);    // set Pin 13 as an output
   pinMode(11, OUTPUT);    // set Pin 11 as an output

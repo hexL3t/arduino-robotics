@@ -4,6 +4,9 @@
 // Initialize the LCD (Update address to 0x27 or 0x3F if needed)
 LiquidCrystal_I2C lcd(0x27, 16, 2); // Initialize the LCD with address 0x27 and 16x2 dimensions
 
+// Declare variables
+int count = 0;                       // Servo angle counter
+
 void setup() {
   // Motor control pins
   pinMode(13, OUTPUT);              // Right motor direction pin
@@ -23,7 +26,21 @@ void setup() {
 
 void loop() {
   delay(300);                       // 0.3s Delay for stability
-  lcdNames();    
+  lcdCounter();
+}
+
+void lcdCounter(){
+  for(int i = 0; i < 100; i++){
+    displayCount();
+    delay(1000);                  // wait 1 second
+    lcd.clear();
+    count++;
+  }
+}
+
+void displayCount(){
+  lcd.setCursor(0,0);  // Set cursor to column 0, row 0
+  lcd.print(count);
 }
 
 void lcdNames() {
