@@ -30,7 +30,7 @@ void loop() {
 }
 
 void lcdCounter(){
-  for(int i = 0; i < 100; i++){
+  for(int i = 0; count < 100; i++){
     displayCount();
     delay(1000);                  // wait 1 second
     lcd.clear();
