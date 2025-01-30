@@ -4,11 +4,7 @@ void setup() {
   pinMode(11, OUTPUT);    // set Pin 11 as an output
   pinMode(12, OUTPUT);    // set Pin 12 as an output
   pinMode(3, OUTPUT);     // set Pin 3 as an output
-
-  // Light Pins
-  pinMode(9, OUTPUT);     // set Pin 9 as an Output
-  pinMode(10, OUTPUT);    // set Pin 10 as an Output
-
+  
   // Sensor Pins
   pinMode(6, INPUT);     // set Pin 6 as an Input
   pinMode(8, INPUT);     // set Pin 8 as an Input

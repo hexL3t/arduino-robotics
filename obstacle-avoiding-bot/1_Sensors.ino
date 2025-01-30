@@ -1,13 +1,4 @@
-int randomNumber = 0;     // Global Variable for Random Number
-int beat = 250;
-
 void setup() {
-  // Motor control pins
-  pinMode(13, OUTPUT);    // set Pin 13 as an output
-  pinMode(11, OUTPUT);    // set Pin 11 as an output
-  pinMode(12, OUTPUT);    // set Pin 12 as an output
-  pinMode(3, OUTPUT);     // set Pin 3 as an output
-
   // Light Pins
   pinMode(9, OUTPUT);     // set Pin 9 as an Output
   pinMode(10, OUTPUT);    // set Pin 10 as an Output
@@ -19,7 +10,7 @@ void setup() {
 // Main loop - runs repeatedly
 void loop() {
   delay(5000);            // Wait for 5 seconds
-  sensorTest();         // Call the performDance function
+  sensorTest();         // Call the sensorTest function
 }
 
 // Sensor Test - Turns the light ON or OFF based on sensor input
